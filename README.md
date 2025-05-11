@@ -1,5 +1,5 @@
-# COURSENAME
-This is the repository for the LinkedIn Learning course `course-name`. The full course is available from [LinkedIn Learning][lil-course-url].
+# Prometheus and Grafana: Visualizing Application Performance
+This is the repository for the LinkedIn Learning course `Prometheus and Grafana: Visualizing Application Performance`. The full course is available from [LinkedIn Learning][lil-course-url].
 
 ![lil-thumbnail-url]
 
