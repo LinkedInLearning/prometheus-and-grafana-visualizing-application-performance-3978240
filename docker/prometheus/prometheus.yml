@@ -1,26 +1,41 @@
-# Local Prometheus Config for Docker Compose
 global:
-  scrape_interval:     15s # By default, scrape targets every 15 seconds.
-  evaluation_interval: 15s # By default, scrape targets every 15 seconds.
+  scrape_interval: 15s
+  evaluation_interval: 15s
 
 scrape_configs:
-  # The job name is added as a label `job=<job_name>` to any timeseries scraped from this config.
   - job_name: 'prometheus'
-    # Override the global default and scrape targets from this job every 5 seconds.
-    scrape_interval: 15s
     static_configs:
-    - targets: ['localhost:9090']
-  - job_name: 'server-1'
-    scrape_interval: 15s
+      - targets: ['localhost:9090']
+
+  - job_name: 'auth-service'
     static_configs:
-    - targets: ['host.docker.internal:9100']
-      labels:
-        environment: production
-        server: production-server
-  - job_name: 'server-2'
-    scrape_interval: 15s
+      - targets: ['auth-service:9101']
+    relabel_configs:
+      - source_labels: [__address__]
+        target_label: instance
+        replacement: 'auth-service'
+      - source_labels: [__address__]
+        target_label: service
+        replacement: 'auth-service'
+
+  - job_name: 'user-service'
     static_configs:
-    - targets: ['host.docker.internal:9200']
-      labels:
-        environment: staging
-        server: staging-server
+      - targets: ['user-service:9102']
+    relabel_configs:
+      - source_labels: [__address__]
+        target_label: instance
+        replacement: 'user-service'
+      - source_labels: [__address__]
+        target_label: service
+        replacement: 'user-service'
+
+  - job_name: 'payment-service'
+    static_configs:
+      - targets: ['payment-service:9103']
+    relabel_configs:
+      - source_labels: [__address__]
+        target_label: instance
+        replacement: 'payment-service'
+      - source_labels: [__address__]
+        target_label: service
+        replacement: 'payment-service'
