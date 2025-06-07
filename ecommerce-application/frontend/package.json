@@ -1,0 +1,11 @@
+{
+    "name": "ecommerce-order-frontend",
+    "version": "1.0.0",
+    "description": "Simple frontend for order management",
+    "scripts": {
+      "start": "npx http-server ."
+    },
+    "dependencies": {
+      "http-server": "^14.1.1"
+    }
+  }
