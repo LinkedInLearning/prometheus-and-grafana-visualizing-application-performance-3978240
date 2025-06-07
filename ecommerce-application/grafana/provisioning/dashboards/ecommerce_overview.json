@@ -51,6 +51,7 @@
         "type": "prometheus",
         "uid": "PBFA97CFB590B2093"
       },
+      "description": "'Shows the percentage of requests resulting in errors (4xx/5xx). Target: <5%",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -108,7 +109,7 @@
           "refId": "A"
         }
       ],
-      "title": "Error Percentage",
+      "title": "Error Rate (% of total requests)",
       "type": "stat"
     },
     {
@@ -173,7 +174,7 @@
           "refId": "A"
         }
       ],
-      "title": "Request Duration (90th percentile)",
+      "title": "Response Time (90th percentile)",
       "type": "stat"
     },
     {
@@ -513,6 +514,6 @@
   "timezone": "",
   "title": "Ecommerce Overview Dashboard",
   "uid": "ecommerce-overview-dashboard",
-  "version": 5,
+  "version": 6,
   "weekStart": ""
 }
