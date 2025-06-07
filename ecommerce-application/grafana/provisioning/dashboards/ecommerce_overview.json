@@ -22,36 +22,75 @@
   "links": [],
   "panels": [
     {
-      "fieldConfig": {
-        "defaults": {},
-        "overrides": []
-      },
+      "collapsed": true,
       "gridPos": {
-        "h": 3,
+        "h": 1,
         "w": 24,
         "x": 0,
         "y": 0
       },
-      "id": 16,
-      "options": {
-        "code": {
-          "language": "plaintext",
-          "showLineNumbers": false,
-          "showMiniMap": false
+      "id": 18,
+      "panels": [
+        {
+          "fieldConfig": {
+            "defaults": {},
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 9,
+            "w": 12,
+            "x": 0,
+            "y": 1
+          },
+          "id": 16,
+          "options": {
+            "code": {
+              "language": "plaintext",
+              "showLineNumbers": false,
+              "showMiniMap": false
+            },
+            "content": "# Ecommerce System Overview\n\nThis dashboard monitors our ecommerce platform's health using RED and USE metrics.\n- **SLA Target**: 99.9% availability\n- **Response Time SLO**: < 500ms (p90)\n- **Error Rate Target**: < 1%\n\nFor detailed analysis, use the links below:\n- [System Metrics Dashboard](link)\n- [Error Analysis Dashboard](link)",
+            "mode": "markdown"
+          },
+          "pluginVersion": "11.5.2",
+          "title": "",
+          "type": "text"
         },
-        "content": "# Ecommerce System Overview\n\nThis dashboard provides a brief overview of system health.\nTo troubleshoot further, use the \"Ecommerce System Drill-down\" dashboard.",
-        "mode": "markdown"
-      },
-      "pluginVersion": "11.5.2",
-      "title": "",
-      "type": "text"
+        {
+          "fieldConfig": {
+            "defaults": {},
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 9,
+            "w": 12,
+            "x": 12,
+            "y": 1
+          },
+          "id": 19,
+          "options": {
+            "code": {
+              "language": "plaintext",
+              "showLineNumbers": false,
+              "showMiniMap": false
+            },
+            "content": "## Documentation\n\n- [Link 1]()\n- [Link 2]()\n",
+            "mode": "markdown"
+          },
+          "pluginVersion": "11.5.2",
+          "title": "",
+          "type": "text"
+        }
+      ],
+      "title": "Context",
+      "type": "row"
     },
     {
       "datasource": {
         "type": "prometheus",
         "uid": "PBFA97CFB590B2093"
       },
-      "description": "'Shows the percentage of requests resulting in errors (4xx/5xx). Target: <5%",
+      "description": "'Shows error rate against our SLA target of 1%. Includes both client (4xx) and server (5xx) errors.",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -66,8 +105,12 @@
                 "value": null
               },
               {
+                "color": "#EAB839",
+                "value": 10
+              },
+              {
                 "color": "red",
-                "value": 80
+                "value": 20
               }
             ]
           },
@@ -79,7 +122,7 @@
         "h": 5,
         "w": 12,
         "x": 0,
-        "y": 3
+        "y": 1
       },
       "id": 14,
       "options": {
@@ -144,7 +187,7 @@
         "h": 5,
         "w": 12,
         "x": 12,
-        "y": 3
+        "y": 1
       },
       "id": 15,
       "options": {
@@ -238,7 +281,7 @@
         "h": 8,
         "w": 12,
         "x": 0,
-        "y": 8
+        "y": 6
       },
       "id": 3,
       "options": {
@@ -335,7 +378,7 @@
         "h": 8,
         "w": 12,
         "x": 12,
-        "y": 8
+        "y": 6
       },
       "id": 1,
       "options": {
@@ -458,7 +501,7 @@
         "h": 8,
         "w": 12,
         "x": 0,
-        "y": 16
+        "y": 14
       },
       "id": 2,
       "options": {
@@ -514,6 +557,6 @@
   "timezone": "",
   "title": "Ecommerce Overview Dashboard",
   "uid": "ecommerce-overview-dashboard",
-  "version": 6,
+  "version": 8,
   "weekStart": ""
 }
