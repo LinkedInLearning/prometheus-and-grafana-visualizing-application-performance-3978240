@@ -521,7 +521,7 @@
   "timepicker": {},
   "timezone": "",
   "title": "Ecommerce Overview Dashboard",
-  "uid": "order-management-dashboard",
+  "uid": "ecommerce-overview-dashboard",
   "version": 2,
   "weekStart": ""
 }
