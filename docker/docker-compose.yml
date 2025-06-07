@@ -1,38 +1,104 @@
 services:
+  # Microservice 1: Authentication Service
+  auth-service:
+    image: quay.io/prometheus/node-exporter:latest
+    container_name: auth-service
+    command:
+      - '--path.rootfs=/host'
+      - '--web.listen-address=:9101'
+    ports:
+      - "9101:9101" 
+    restart: unless-stopped
+    volumes:
+      - './:/host:ro,rslave'
+    networks:
+      - monitoring
+    labels:
+      org.label-schema.group: "monitoring"
+      service.name: "auth-service"
+
+  # Microservice 2: User Service
+  user-service:
+    image: quay.io/prometheus/node-exporter:latest
+    container_name: user-service
+    command:
+      - '--path.rootfs=/host'
+      - '--web.listen-address=:9102'
+    ports:
+      - "9102:9102" 
+    restart: unless-stopped
+    volumes:
+      - './:/host:ro,rslave'
+    networks:
+      - monitoring
+    labels:
+      org.label-schema.group: "monitoring"
+      service.name: "user-service"
+
+  # Microservice 3: Payment Service
+  payment-service:
+    image: quay.io/prometheus/node-exporter:latest
+    container_name: payment-service
+    command:
+      - '--path.rootfs=/host'
+      - '--web.listen-address=:9103'
+    ports:
+      - "9103:9103" 
+    restart: unless-stopped
+    volumes:
+      - './:/host:ro,rslave'
+    networks:
+      - monitoring
+    labels:
+      org.label-schema.group: "monitoring"
+      service.name: "payment-service"
+
+  # Prometheus for metrics collection
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: prometheus
+    restart: unless-stopped
+    volumes:
+      - ./prometheus:/etc/prometheus
+      - prometheus_data:/prometheus
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+      - '--web.console.libraries=/etc/prometheus/console_libraries'
+      - '--web.console.templates=/etc/prometheus/consoles'
+      - '--web.enable-lifecycle'
+    expose:
+      - 9090
+    ports:
+      - "9090:9090"
+    networks:
+      - monitoring
+    labels:
+      org.label-schema.group: "monitoring"
+
+  # Grafana for visualization
   grafana:
     image: grafana/grafana:11.5.2
     container_name: grafana
     restart: unless-stopped
-    ports:
-     - '3000:3000'
     volumes:
-     - 'grafana_storage:/var/lib/grafana'
-  prometheus:
-    image: prom/prometheus@sha256:565ee86501224ebbb98fc10b332fa54440b100469924003359edf49cbce374bd
-    volumes:
-      - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+      - grafana_data:/var/lib/grafana
+      - ./grafana/provisioning:/etc/grafana/provisioning
+    environment:
+      - GF_SECURITY_ADMIN_USER=admin
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+      - GF_USERS_ALLOW_SIGN_UP=false
     ports:
-      - "9095:9090"
-    restart: unless-stopped
-  server_1:
-    image: quay.io/prometheus/node-exporter:latest
-    container_name: server_1
-    command:
-      - '--path.rootfs=/host'
-    ports:
-      - "9100:9100" 
-    restart: unless-stopped
-    volumes:
-      - './:/host:ro,rslave'
-  server_2:
-    image: quay.io/prometheus/node-exporter:latest
-    container_name: server_2
-    command:
-      - '--path.rootfs=/host'
-    ports:
-      - "9200:9100" 
-    restart: unless-stopped
-    volumes:
-      - './:/host:ro,rslave'
+      - "3000:3000"
+    networks:
+      - monitoring
+    labels:
+      org.label-schema.group: "monitoring"
+
+networks:
+  monitoring:
+    driver: bridge
+
 volumes:
-  grafana_storage: {}
+  prometheus_data: {}
+  grafana_data: {}
