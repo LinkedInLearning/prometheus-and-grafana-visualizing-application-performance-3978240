@@ -6,3 +6,7 @@ npm-debug.log
 .venv/
 .env
 __pycache__/
+
+*.lock.hcl
+*.tfstate*
+.terraform/
