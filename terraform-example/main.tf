@@ -23,3 +23,28 @@ provider "grafana" {
   url   = "http://localhost:3500"
   auth = "admin:admin"
 }
+
+// Create a service account and key for the stack
+resource "grafana_cloud_stack_service_account" "cloud_sa" {
+  provider   = grafana.cloud
+  stack_slug = data.grafana_cloud_stack.stack.slug
+
+  name        = "demo service account"
+  role        = "Admin"
+  is_disabled = false
+}
+
+resource "grafana_cloud_stack_service_account_token" "cloud_sa" {
+  provider   = grafana.cloud
+  stack_slug = data.grafana_cloud_stack.stack.slug
+
+  name               = "terraform serviceaccount key"
+  service_account_id = grafana_cloud_stack_service_account.cloud_sa.id
+}
+
+provider "grafana" {
+  alias = "stack"
+
+  url  = data.grafana_cloud_stack.stack.url
+  auth = grafana_cloud_stack_service_account_token.cloud_sa.key
+}
