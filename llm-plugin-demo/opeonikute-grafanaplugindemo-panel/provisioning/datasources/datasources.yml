@@ -1,0 +1,11 @@
+apiVersion: 1
+
+datasources:
+  - name: TestData DB
+    type: testdata
+    uid: trlxrdZVk
+    isDefault: true
+  - name: Prometheus
+    type: prometheus
+    access: proxy
+    url: http://prometheus:9090

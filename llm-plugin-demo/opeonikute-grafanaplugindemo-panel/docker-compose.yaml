@@ -1,0 +1,11 @@
+services:
+  grafana:
+    extends:
+      file: .config/docker-compose-base.yaml
+      service: grafana
+    networks:
+      - ecommerce-application_backend-network
+
+networks:
+  ecommerce-application_backend-network:
+    external: true

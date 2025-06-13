@@ -1,0 +1,33 @@
+services:
+  grafana:
+    user: root
+    container_name: 'opeonikute-grafanaplugindemo-panel'
+
+    build:
+      context: .
+      args:
+        grafana_image: ${GRAFANA_IMAGE:-grafana-enterprise}
+        grafana_version: ${GRAFANA_VERSION:-11.5.3}
+        development: ${DEVELOPMENT:-false}
+        anonymous_auth_enabled: ${ANONYMOUS_AUTH_ENABLED:-true}
+    ports:
+      - 3501:3000/tcp
+    volumes:
+      - ../dist:/var/lib/grafana/plugins/opeonikute-grafanaplugindemo-panel
+      - ../provisioning:/etc/grafana/provisioning
+      - ..:/root/opeonikute-grafanaplugindemo-panel
+
+    environment:
+      NODE_ENV: development
+      GF_LOG_FILTERS: plugin.opeonikute-grafanaplugindemo-panel:debug
+      GF_LOG_LEVEL: debug
+      GF_DATAPROXY_LOGGING: 1
+      GF_PLUGINS_ALLOW_LOADING_UNSIGNED_PLUGINS: opeonikute-grafanaplugindemo-panel
+
+  grafana-mcp:
+    build: /Users/opeyemionikute/Documents/mcp-grafana
+    container_name: 'grafana-mcp'
+    ports:
+      - 8080:8080/tcp
+    environment:
+      GF_MCP_GRAFANA_URL: http://grafana:3000
