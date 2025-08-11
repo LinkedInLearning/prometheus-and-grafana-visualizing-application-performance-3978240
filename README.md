@@ -5,7 +5,8 @@ This is the repository for the LinkedIn Learning course `Prometheus and Grafana:
 
 ## Course Description
 
-_See the readme file in the main branch for updated instructions and information._
+Whether you are already familiar with Grafana or a beginner, Systems Reliability Engineer (SRE) Opeyemi Onikute guides you through what you need to use Prometheus and Grafana to monitor and analyze applications in the real-world. Learn about Prometheus as a data source and explore all the tools you need to succeed with Grafana as a whole, including other data sources in the future. Beyond Grafana, find out how to create world-class dashboards as a whole.
+
 ## Instructions
 This repository has branches for each of the videos in the course. You can use the branch pop up menu in github to switch to a specific branch and take a look at the course at that stage, or you can add `/tree/BRANCH_NAME` to the URL to go to the branch you want to access.
 
@@ -60,6 +61,6 @@ Check out my other courses on [LinkedIn Learning](https://www.linkedin.com/learn
 
 [0]: # (Replace these placeholder URLs with actual course URLs)
 
-[lil-course-url]: https://www.linkedin.com/learning/
-[lil-thumbnail-url]: https://media.licdn.com/dms/image/v2/D4E0DAQG0eDHsyOSqTA/learning-public-crop_675_1200/B4EZVdqqdwHUAY-/0/1741033220778?e=2147483647&v=beta&t=FxUDo6FA8W8CiFROwqfZKL_mzQhYx9loYLfjN-LNjgA
+[lil-course-url]: https://www.linkedin.com/learning/prometheus-and-grafana-visualizing-application-performance
+[lil-thumbnail-url]: https://media.licdn.com/dms/image/v2/D4E0DAQFYXny3o50sqQ/learning-public-crop_675_1200/B4EZh2I95VHoAY-/0/1754328719800?e=2147483647&v=beta&t=MZd77C_JdmgLZqdQHjiDrEOkqFTATZsV2AT2-N0pN1A
 
